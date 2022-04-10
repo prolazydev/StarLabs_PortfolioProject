@@ -14,6 +14,5 @@ namespace StarLabs_PortfolioProject.Data
         {
         }
         public DbSet<Chord> Chords { get; set; }
-
     }
 }

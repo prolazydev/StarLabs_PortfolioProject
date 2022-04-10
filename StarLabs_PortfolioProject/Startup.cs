@@ -1,17 +1,15 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using StarLabs_PortfolioProject.Contracts.Repositories;
+using StarLabs_PortfolioProject.Contracts.Services;
 using StarLabs_PortfolioProject.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using StarLabs_PortfolioProject.Repositories;
+using StarLabs_PortfolioProject.Services;
 
 namespace StarLabs_PortfolioProject
 {
@@ -34,6 +32,13 @@ namespace StarLabs_PortfolioProject
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddAutoMapper(typeof(Startup));
+
+            services.AddTransient<IChordRepository, ChordRepository>();
+            services.AddTransient<IChordService, ChordService>();
+
+
             services.AddControllersWithViews();
         }
 
@@ -61,6 +66,10 @@ namespace StarLabs_PortfolioProject
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                   name: "Admin",
+                   pattern: "{area:exists}/{controller=Chord}/{action=Index}/{id?}");
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

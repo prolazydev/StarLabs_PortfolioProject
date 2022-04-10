@@ -1,8 +1,27 @@
-﻿@{
+﻿@model List<Chord>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@section Styles {
+    <link href="~/css/homePage.css" rel="stylesheet" />
+}
+
+
+@if(!Model.Any()){
+    <h1 style="text-align:center;">No chords available to learn from at the moment.</h1>
+}else{
+    @foreach(var item in Model){
+        <div class="card-holder row">
+            <div class="card-holder-main">
+                <h3 class="chord-name">@item.Name</h3>
+                @{
+                    string encoded = Convert.ToBase64String(item.Photo);
+                    string photo = string.Format("data:image/gif;base64,{0}", encoded);
+                }
+                <img src="@photo" alt="Alternate Text"/>
+            </div>
+        </div>
+    }
+}

@@ -1,0 +1,41 @@
+﻿@model List<Chord>
+
+
+<a class="btn btn-secondary" style="width: 250px; height:50px; margin-left: auto; margin-right: auto;" asp-action="Create">Create new chord</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Photo
+            </th>
+            <th>
+                Manage
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @{
+                    string encoded = Convert.ToBase64String(item.Photo);
+                    string photo = string.Format("data:image/gif;base64,{0}", encoded);
+                }
+                <img src="@photo" alt="Alternate Text" width="60px" height="60px" />
+            </td>
+            <td>
+                <a asp-action="Update" asp-route-id="@item.Id">Update</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+        }   
+    </tbody>
+</table>

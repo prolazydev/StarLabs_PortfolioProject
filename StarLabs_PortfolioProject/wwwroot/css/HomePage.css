@@ -1,0 +1,42 @@
+﻿.card-holder {
+    width: 24.99999%;
+    height: auto;
+    padding: 0 6px;
+    float: left;
+    margin: 5px 0;
+}
+
+.card-holder-main {
+    width: 100%;
+    height: -webkit-fill-available;
+    border: 1px solid #ccc;
+    border-radius: 13px;
+    padding: 5px 10px 10px 10px;
+}
+
+.card-holder-main:hover {
+    border: 1px solid #777;
+}
+
+.card-holder-main img {
+    width: 100%;
+    height: auto;
+}
+
+.chord-name {
+    text-align: center;
+}
+
+@media only screen and (max-width: 700px) {
+    .card-holder {
+        width: 49.99999%;
+        margin: 6px 0;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .card-holder {
+        width: -webkit-fill-available;
+        height: auto;
+    }
+}

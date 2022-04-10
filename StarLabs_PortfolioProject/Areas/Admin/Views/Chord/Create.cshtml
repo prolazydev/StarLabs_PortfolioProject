@@ -1,0 +1,32 @@
+﻿@model ChordViewModel
+
+<form class="contact2-form validate-form" asp-action="Create" method="post" enctype="multipart/form-data">
+    <span class="contact2-form-title">
+        Create Chord
+    </span>
+    <div class="container-contact2-form-btn">
+        <div class="wrap-contact2-form-btn">
+            <div class="contact2-form-bgbtn"></div>
+            <button class="contact2-form-btn" asp-action="Index">
+                Go back
+            </button>
+        </div>
+    </div>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="wrap-input2 validate-input" data-validate="Name is required">
+        <input asp-for="@Model.Name" class="input2">
+        <span class="focus-input2" data-placeholder="Name"></span>
+    </div>
+    <div class="wrap-input2 validate-input">
+        <p class="">Default Image</p>
+        <input asp-for="@Model.Photo" class="input2">
+    </div>
+    <div class="container-contact2-form-btn">
+        <div class="wrap-contact2-form-btn">
+            <div class="contact2-form-bgbtn"></div>
+            <button class="contact2-form-btn">
+                Create
+            </button>
+        </div>
+    </div>
+</form>
